@@ -42,7 +42,7 @@ setup(
     description=PROJECT_DESCRIPTION,
     long_description=PROJECT_README.read_text('utf-8'),
     url=PROJECT_URL,
-    packages=find_packages(PROJECT_SOURCE_DIRECTORY),
+    packages=find_packages(str(PROJECT_SOURCE_DIRECTORY)),
     package_dir={
         '': PROJECT_SOURCE_DIRECTORY.relative_to(PROJECT_ROOT)
     },
