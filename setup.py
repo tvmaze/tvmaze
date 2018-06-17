@@ -55,4 +55,7 @@ setup(
     zip_safe=False,
     classifiers=PROJECT_CLASSIFIERS,
     keywords=PROJECT_KEYWORDS,
+    tests_require=[
+        'pytest',
+    ],
 )
