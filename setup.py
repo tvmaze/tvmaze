@@ -44,7 +44,7 @@ setup(
     url=PROJECT_URL,
     packages=find_packages(str(PROJECT_SOURCE_DIRECTORY)),
     package_dir={
-        '': PROJECT_SOURCE_DIRECTORY.relative_to(PROJECT_ROOT)
+        '': str(PROJECT_SOURCE_DIRECTORY.relative_to(PROJECT_ROOT)),
     },
     py_modules=[
         path.name
