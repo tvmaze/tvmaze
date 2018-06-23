@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- encoding: utf-8 -*-
 
 """Distutils setup script for packaging and distribution."""
 
