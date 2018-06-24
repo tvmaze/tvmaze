@@ -40,6 +40,38 @@ def test_parse_date(
     assert tvmaze.parsers.parse_date(test_input) == expected
 
 
+PARSE_DATE_EXCEPTION_PARAMS = {
+    'Do not pass int': (
+        1, TypeError,
+    ),
+    'Do not pass datetime.date': (
+        datetime.date(1970, 1, 1), TypeError,
+    ),
+    'Do not pass datetime.datetime': (
+        datetime.datetime(1970, 1, 1, 0, 0, 0), TypeError,
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_DATE_EXCEPTION_PARAMS.values(),
+    ids=list(PARSE_DATE_EXCEPTION_PARAMS.keys()),
+)
+def test_parse_date_exceptions(
+        test_input: typing.Any,
+        expected: Exception,
+):
+    """
+    Test parsing invalid dates from TVMaze API.
+
+    :param test_input: Invalid input such as an int
+    :param expected: The exception expected
+    """
+    with pytest.raises(expected):
+        tvmaze.parsers.parse_date(test_input)
+
+
 PARSE_DATETIME_PARAMS = {
     'Unix Epoch': (
         '1970-01-01T00:00:00+00:00',
