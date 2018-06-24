@@ -61,6 +61,9 @@ PARSE_TIME_PARAMS = {
     'Half-past': (
         '12:30', datetime.time(hour=12, minute=30),
     ),
+    'Missing time': (
+        '', None,
+    ),
 }
 
 

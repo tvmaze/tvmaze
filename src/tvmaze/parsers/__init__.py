@@ -23,7 +23,7 @@ def parse_date(
 
 def parse_time(
         val: str,
-) -> datetime.time:
+) -> typing.Optional[datetime.time]:
     """
     Parse time from TVMaze API.
 
@@ -31,4 +31,8 @@ def parse_time(
     :return: A datetime.time object
     """
     fmt = '%H:%M'
-    return datetime.datetime.strptime(val, fmt).time()
+    try:
+        return datetime.datetime.strptime(val, fmt).time()
+    except ValueError:
+        if val != '':
+            raise
