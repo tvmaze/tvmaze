@@ -1,11 +1,12 @@
 """Parse data from TVMaze."""
 
 import datetime
+import typing
 
 
 def parse_date(
-        val: str,
-) -> datetime.date:
+        val: typing.Optional[str],
+) -> typing.Optional[datetime.date]:
     """
     Parse date from TVMaze API.
 
@@ -13,4 +14,8 @@ def parse_date(
     :return: A datetime.date object
     """
     fmt = '%Y-%m-%d'
-    return datetime.datetime.strptime(val, fmt).date()
+    try:
+        return datetime.datetime.strptime(val, fmt).date()
+    except TypeError:
+        if val is not None:
+            raise

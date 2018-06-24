@@ -1,6 +1,7 @@
 """Test parsing of dates, times, and durations."""
 
 import datetime
+import typing
 
 import pytest
 
@@ -14,6 +15,9 @@ PARSE_DATE_PARAMS = {
     'Day before Unix Epoch': (
         '1969-12-31', datetime.date(year=1969, month=12, day=31),
     ),
+    'Date not available': (
+        None, None,
+    ),
 }
 
 
@@ -23,7 +27,7 @@ PARSE_DATE_PARAMS = {
     ids=list(PARSE_DATE_PARAMS.keys()),
 )
 def test_parse_date(
-        test_input: str,
+        test_input: typing.Optional[str],
         expected: datetime.date,
 ):
     """
