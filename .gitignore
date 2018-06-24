@@ -1,4 +1,6 @@
+.coverage*
 .tox/
 .pytest_cache/
 .idea/
 *.egg-info
+htmlcov/
