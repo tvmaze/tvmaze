@@ -52,3 +52,15 @@ def parse_time(
     except ValueError:
         if val != '':
             raise
+
+
+def parse_timestamp(
+        val: int,
+) -> datetime.datetime:
+    """
+    Parse timestamp from TVMaze API.
+
+    :param val: A timestamp in seconds since the Unix Epoch
+    :return: An aware datetime.datetime object in UTC
+    """
+    return datetime.datetime.fromtimestamp(val, tz=datetime.timezone.utc)
