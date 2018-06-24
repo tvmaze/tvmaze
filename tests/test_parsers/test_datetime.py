@@ -39,6 +39,42 @@ def test_parse_date(
     assert tvmaze.parsers.parse_date(test_input) == expected
 
 
+PARSE_DATETIME_PARAMS = {
+    'Unix Epoch': (
+        '1970-01-01T00:00:00+00:00',
+        datetime.datetime(
+            1970, 1, 1, 0, 0, 0,
+            tzinfo=datetime.timezone.utc,
+        ),
+    ),
+    'One Second Before Unix Epoch': (
+        '1969-12-31T23:59:59+00:00',
+        datetime.datetime(
+            1969, 12, 31, 23, 59, 59,
+            tzinfo=datetime.timezone.utc,
+        ),
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_DATETIME_PARAMS.values(),
+    ids=list(PARSE_DATETIME_PARAMS.keys()),
+)
+def test_parse_datetime(
+        test_input: str,
+        expected: datetime.datetime,
+):
+    """
+    Test parsing datetimes from TVMaze API.
+
+    :param test_input: A sample time string
+    :param expected: The expected aware datetime.datetime object
+    """
+    assert tvmaze.parsers.parse_datetime(test_input) == expected
+
+
 PARSE_DURATION_PARAMS = {
     'Hour': (60, datetime.timedelta(minutes=60)),
     'Half Hour': (30, datetime.timedelta(minutes=30)),
