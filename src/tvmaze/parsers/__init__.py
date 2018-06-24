@@ -21,6 +21,18 @@ def parse_date(
             raise
 
 
+def parse_duration(
+        val: int,
+) -> datetime.timedelta:
+    """
+    Parse duration from TVMaze API.
+
+    :param val: A duration in minutes
+    :return: A datetime.timedelta object
+    """
+    return datetime.timedelta(minutes=val)
+
+
 def parse_time(
         val: str,
 ) -> typing.Optional[datetime.time]:
