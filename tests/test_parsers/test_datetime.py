@@ -37,3 +37,46 @@ def test_parse_date(
     :param expected: The expected datetime.date object
     """
     assert tvmaze.parsers.parse_date(test_input) == expected
+
+
+PARSE_TIME_PARAMS = {
+    'Midnight': (
+        '0:00', datetime.time(hour=0, minute=0),
+    ),
+    'Midnight with leading zero': (
+        '00:00', datetime.time(hour=0, minute=0),
+    ),
+    'AM with single-digit hour': (
+        '1:00', datetime.time(hour=1, minute=0),
+    ),
+    'AM with leading zero': (
+        '01:00', datetime.time(hour=1, minute=0),
+    ),
+    'PM': (
+        '13:00', datetime.time(hour=13, minute=0),
+    ),
+    'Quarter-past': (
+        '12:15', datetime.time(hour=12, minute=15),
+    ),
+    'Half-past': (
+        '12:30', datetime.time(hour=12, minute=30),
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_TIME_PARAMS.values(),
+    ids=list(PARSE_TIME_PARAMS.keys()),
+)
+def test_parse_time(
+        test_input: str,
+        expected: datetime.time,
+):
+    """
+    Test parsing times from TVMaze API.
+
+    :param test_input: A sample time string
+    :param expected: The expected datetime.time object
+    """
+    assert tvmaze.parsers.parse_time(test_input) == expected
