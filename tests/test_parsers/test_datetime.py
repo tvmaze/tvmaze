@@ -107,3 +107,46 @@ def test_parse_time(
     :param expected: The expected datetime.time object
     """
     assert tvmaze.parsers.parse_time(test_input) == expected
+
+
+PARSE_TIMESTAMP_PARAMS = {
+    'Unix Epoch': (
+        0,
+        datetime.datetime(
+            1970, 1, 1, 0, 0, 0,
+            tzinfo=datetime.timezone.utc,
+        ),
+    ),
+    'Y2K New years eve': (
+        946684799,
+        datetime.datetime(
+            1999, 12, 31, 23, 59, 59,
+            tzinfo=datetime.timezone.utc,
+        ),
+    ),
+    'Y2K': (
+        946684800,
+        datetime.datetime(
+            2000, 1, 1, 0, 0, 0,
+            tzinfo=datetime.timezone.utc,
+        ),
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_TIMESTAMP_PARAMS.values(),
+    ids=list(PARSE_TIMESTAMP_PARAMS.keys()),
+)
+def test_parse_timestamp(
+        test_input: int,
+        expected: datetime.datetime,
+):
+    """
+    Test parsing timestamps from TVMaze API.
+
+    :param test_input: A timestamp in seconds since the Unix Epoch
+    :param expected: The expected aware datetime.datetime object in UTC
+    """
+    assert tvmaze.parsers.parse_timestamp(test_input) == expected
