@@ -54,6 +54,9 @@ setuptools.setup(
     zip_safe=False,
     classifiers=PROJECT_CLASSIFIERS,
     keywords=PROJECT_KEYWORDS,
+    install_requires=[
+        'pendulum',
+    ],
     tests_require=[
         'pytest',
     ],
