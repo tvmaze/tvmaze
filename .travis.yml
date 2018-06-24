@@ -1,0 +1,33 @@
+language: python
+cache: pip
+env:
+  global:
+    - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+    - SEGFAULT_SIGNALS=all
+  matrix:
+    - TOXENV=quality
+matrix:
+  include:
+    - python: '3.6'
+      env:
+        - TOXENV=py36,covered,coveralls
+    - python: '3.7-dev'
+      env:
+        - TOXENV=py37,covered,coveralls
+before_install:
+  # Display environment information
+  - python --version
+  - uname -a
+  - lsb_release -a
+install:
+  - pip install tox
+  # Display environment information
+  - virtualenv --version
+  - easy_install --version
+  - pip --version
+  - tox --version
+script:
+  - tox -v
+after_failure:
+  - more .tox/log/* | cat
+  - more .tox/*/log/* | cat

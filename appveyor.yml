@@ -1,0 +1,48 @@
+version: '{branch}-{build}'
+build: off
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+environment:
+  matrix:
+# PYTHON 3.6
+    - TOXENV: 'py36,covered,coveralls'
+      TOXPYTHON: C:\Python36\python.exe
+      PYTHON_HOME: C:\Python36
+      PYTHON_VERSION: '3.6'
+      PYTHON_ARCH: '32'
+    - TOXENV: 'py36,covered,coveralls'
+      TOXPYTHON: C:\Python36-x64\python.exe
+      PYTHON_HOME: C:\Python36-x64
+      PYTHON_VERSION: '3.6'
+      PYTHON_ARCH: '64'
+## NOT YET SUPPORTED: PYTHON 3.7
+#    - TOXENV: 'py37,covered,coveralls'
+#      TOXPYTHON: C:\Python37\python.exe
+#      PYTHON_HOME: C:\Python37
+#      PYTHON_VERSION: '3.7'
+#      PYTHON_ARCH: '32'
+#    - TOXENV: 'py37,covered,coveralls'
+#      TOXPYTHON: C:\Python37-x64\python.exe
+#      PYTHON_HOME: C:\Python37-x64
+#      PYTHON_VERSION: '3.7'
+#      PYTHON_ARCH: '64'
+init:
+  - ps: echo $env:TOXENV
+  - ps: Get-Item Env:PYTHON_HOME
+  - ps: ls C:\Python*
+install:
+  - '%PYTHON_HOME%\Scripts\virtualenv --version'
+  - '%PYTHON_HOME%\Scripts\easy_install --version'
+  - '%PYTHON_HOME%\Scripts\pip --version'
+  - '%PYTHON_HOME%\python -m pip install tox'
+  - '%PYTHON_HOME%\Scripts\tox --version'
+test_script:
+  - '%WITH_COMPILER% %PYTHON_HOME%\Scripts\tox'
+
+on_failure:
+  - ps: dir "env:"
+  - ps: get-content .tox\*\log\*
+
+### To enable remote debugging uncomment this (also, see: http://www.appveyor.com/docs/how-to/rdp-to-build-worker):
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
