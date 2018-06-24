@@ -3,6 +3,7 @@
 import datetime
 import typing
 
+import pendulum
 import pytest
 
 import tvmaze.parsers
@@ -186,3 +187,41 @@ def test_parse_timestamp(
     :param expected: The expected aware datetime.datetime object in UTC
     """
     assert tvmaze.parsers.parse_timestamp(test_input) == expected
+
+
+PARSE_TIMEZONE_PARAMS = {
+    'America/New_York': (
+        'America/New_York',
+        pendulum.timezone('America/New_York'),
+    ),
+    'Europe/London': (
+        'Europe/London',
+        pendulum.timezone('Europe/London'),
+    ),
+    'Europe/Stockholm': (
+        'Europe/Stockholm',
+        pendulum.timezone('Europe/Stockholm'),
+    ),
+    'Asia/Tokyo': (
+        'Asia/Tokyo',
+        pendulum.timezone('Asia/Tokyo'),
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_TIMEZONE_PARAMS.values(),
+    ids=list(PARSE_TIMEZONE_PARAMS.keys()),
+)
+def test_parse_timezone(
+        test_input: str,
+        expected: datetime.tzinfo,
+):
+    """
+    Test parsing timezones from TVMaze API.
+
+    :param test_input: A sample timezone string
+    :param expected: The expected timezone
+    """
+    assert tvmaze.parsers.parse_timezone(test_input) == expected
