@@ -111,6 +111,7 @@ def test_parse_datetime(
 PARSE_DURATION_PARAMS = {
     'Hour': (60, datetime.timedelta(minutes=60)),
     'Half Hour': (30, datetime.timedelta(minutes=30)),
+    'None': (None, None),
 }
 
 
@@ -130,6 +131,35 @@ def test_parse_duration(
     :param expected: The expected datetime.timedelta object
     """
     assert tvmaze.parsers.parse_duration(test_input) == expected
+
+
+PARSE_DURATION_EXCEPTION_PARAMS = {
+    'Do not pass str': (
+        '1', TypeError,
+    ),
+    'Do not pass datetime.timedelta': (
+        datetime.timedelta(minutes=1), TypeError,
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_DURATION_EXCEPTION_PARAMS.values(),
+    ids=list(PARSE_DURATION_EXCEPTION_PARAMS.keys()),
+)
+def test_parse_duration_exceptions(
+        test_input: typing.Any,
+        expected: Exception,
+):
+    """
+    Test parsing invalid durations from TVMaze API.
+
+    :param test_input: An invalid input such as a str
+    :param expected: The exception expected
+    """
+    with pytest.raises(expected):
+        tvmaze.parsers.parse_duration(test_input)
 
 
 PARSE_TIME_PARAMS = {
