@@ -18,8 +18,8 @@ and the project team is not affiliated in any way with `TVMaze.com`_. Any
 communications or interactions with the project team should in no way be
 construed to reflect the opinions of the TVMaze website or its staff.
 
-| Master: |travis| |appveyor|
-| Develop: |travis-dev| |appveyor-dev|
+| Master: |travis| |appveyor| |coveralls|
+| Develop: |travis-dev| |appveyor-dev| |coveralls-dev|
 
 .. _`TVMaze.com`: http://www.tvmaze.com
 
@@ -46,3 +46,11 @@ construed to reflect the opinions of the TVMaze website or its staff.
 .. |appveyor-dev| image:: https://ci.appveyor.com/api/projects/status/github/tvmaze/tvmaze?branch=develop&svg=true
     :alt: AppVeyor Build Status
     :target: https://ci.appveyor.com/project/tvmaze/python-tvmaze
+
+.. |coveralls| image:: https://coveralls.io/repos/github/tvmaze/tvmaze/badge.svg?branch=master
+    :alt: Coveralls Coverage Status
+    :target: https://coveralls.io/github/tvmaze/tvmaze?branch=master
+
+.. |coveralls-dev| image:: https://coveralls.io/repos/github/tvmaze/tvmaze/badge.svg?branch=develop
+    :alt: Coveralls Coverage Status
+    :target: https://coveralls.io/github/tvmaze/tvmaze?branch=develop
