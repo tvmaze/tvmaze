@@ -208,6 +208,35 @@ def test_parse_time(
     assert tvmaze.parsers.parse_time(test_input) == expected
 
 
+PARSE_TIME_EXCEPTION_PARAMS = {
+    'Invalid format': (
+        '12:15:01', ValueError,
+    ),
+    'Do not pass datetime.time': (
+        datetime.time(0, 0, 0), TypeError,
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_TIME_EXCEPTION_PARAMS.values(),
+    ids=list(PARSE_TIME_EXCEPTION_PARAMS.keys()),
+)
+def test_parse_time_exceptions(
+        test_input: typing.Any,
+        expected: Exception,
+):
+    """
+    Test parsing invalid times from TVMaze API.
+
+    :param test_input: An invalid input such as an int or incorrect time format
+    :param expected: The exception expected
+    """
+    with pytest.raises(expected):
+        tvmaze.parsers.parse_time(test_input)
+
+
 PARSE_TIMESTAMP_PARAMS = {
     'Unix Epoch': (
         0,
