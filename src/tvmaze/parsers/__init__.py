@@ -19,3 +19,16 @@ def parse_date(
     except TypeError:
         if val is not None:
             raise
+
+
+def parse_time(
+        val: str,
+) -> datetime.time:
+    """
+    Parse time from TVMaze API.
+
+    :param val: A time string
+    :return: A datetime.time object
+    """
+    fmt = '%H:%M'
+    return datetime.datetime.strptime(val, fmt).time()
