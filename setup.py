@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-# -*- encoding: utf-8 -*-
 
 """Distutils setup script for packaging and distribution."""
 
 import pathlib
 
-from setuptools import find_packages, setup
+import setuptools
 
 PROJECT_ROOT = pathlib.Path(__file__).parent
 PROJECT_NAME = 'tvmaze'
@@ -35,14 +34,14 @@ PROJECT_KEYWORDS = [
     'metadata',
 ]
 
-setup(
+setuptools.setup(
     name=PROJECT_NAME,
     version=PROJECT_VERSION,
     license=PROJECT_LICENSE,
     description=PROJECT_DESCRIPTION,
     long_description=PROJECT_README.read_text('utf-8'),
     url=PROJECT_URL,
-    packages=find_packages(str(PROJECT_SOURCE_DIRECTORY)),
+    packages=setuptools.find_packages(str(PROJECT_SOURCE_DIRECTORY)),
     package_dir={
         '': str(PROJECT_SOURCE_DIRECTORY.relative_to(PROJECT_ROOT)),
     },
