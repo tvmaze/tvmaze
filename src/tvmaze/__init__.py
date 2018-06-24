@@ -14,4 +14,4 @@ communications or interactions with the project team should in no way be
 construed to reflect the opinions of the TVMaze website or its staff.
 """
 
-__version__ = '0.0.0'
+__version__ = '0.1.0'
