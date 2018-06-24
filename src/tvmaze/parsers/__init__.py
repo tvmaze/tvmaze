@@ -3,6 +3,8 @@
 import datetime
 import typing
 
+import pendulum
+
 
 def parse_date(
         val: typing.Optional[str],
@@ -19,6 +21,18 @@ def parse_date(
     except TypeError:
         if val is not None:
             raise
+
+
+def parse_datetime(
+        val: str,
+) -> datetime.datetime:
+    """
+    Parse datetime from TVMaze API.
+
+    :param val: A datetime string with a UTC offset
+    :return: An aware datetime.datetime object
+    """
+    return pendulum.parse(val)
 
 
 def parse_duration(
