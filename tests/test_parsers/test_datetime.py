@@ -40,6 +40,38 @@ def test_parse_date(
     assert tvmaze.parsers.parse_date(test_input) == expected
 
 
+PARSE_DATE_EXCEPTION_PARAMS = {
+    'Do not pass int': (
+        1, TypeError,
+    ),
+    'Do not pass datetime.date': (
+        datetime.date(1970, 1, 1), TypeError,
+    ),
+    'Do not pass datetime.datetime': (
+        datetime.datetime(1970, 1, 1, 0, 0, 0), TypeError,
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_DATE_EXCEPTION_PARAMS.values(),
+    ids=list(PARSE_DATE_EXCEPTION_PARAMS.keys()),
+)
+def test_parse_date_exceptions(
+        test_input: typing.Any,
+        expected: Exception,
+):
+    """
+    Test parsing invalid dates from TVMaze API.
+
+    :param test_input: Invalid input such as an int
+    :param expected: The exception expected
+    """
+    with pytest.raises(expected):
+        tvmaze.parsers.parse_date(test_input)
+
+
 PARSE_DATETIME_PARAMS = {
     'Unix Epoch': (
         '1970-01-01T00:00:00+00:00',
@@ -79,6 +111,7 @@ def test_parse_datetime(
 PARSE_DURATION_PARAMS = {
     'Hour': (60, datetime.timedelta(minutes=60)),
     'Half Hour': (30, datetime.timedelta(minutes=30)),
+    'None': (None, None),
 }
 
 
@@ -98,6 +131,35 @@ def test_parse_duration(
     :param expected: The expected datetime.timedelta object
     """
     assert tvmaze.parsers.parse_duration(test_input) == expected
+
+
+PARSE_DURATION_EXCEPTION_PARAMS = {
+    'Do not pass str': (
+        '1', TypeError,
+    ),
+    'Do not pass datetime.timedelta': (
+        datetime.timedelta(minutes=1), TypeError,
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_DURATION_EXCEPTION_PARAMS.values(),
+    ids=list(PARSE_DURATION_EXCEPTION_PARAMS.keys()),
+)
+def test_parse_duration_exceptions(
+        test_input: typing.Any,
+        expected: Exception,
+):
+    """
+    Test parsing invalid durations from TVMaze API.
+
+    :param test_input: An invalid input such as a str
+    :param expected: The exception expected
+    """
+    with pytest.raises(expected):
+        tvmaze.parsers.parse_duration(test_input)
 
 
 PARSE_TIME_PARAMS = {
@@ -144,6 +206,35 @@ def test_parse_time(
     :param expected: The expected datetime.time object
     """
     assert tvmaze.parsers.parse_time(test_input) == expected
+
+
+PARSE_TIME_EXCEPTION_PARAMS = {
+    'Invalid format': (
+        '12:15:01', ValueError,
+    ),
+    'Do not pass datetime.time': (
+        datetime.time(0, 0, 0), TypeError,
+    ),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_TIME_EXCEPTION_PARAMS.values(),
+    ids=list(PARSE_TIME_EXCEPTION_PARAMS.keys()),
+)
+def test_parse_time_exceptions(
+        test_input: typing.Any,
+        expected: Exception,
+):
+    """
+    Test parsing invalid times from TVMaze API.
+
+    :param test_input: An invalid input such as an int or incorrect time format
+    :param expected: The exception expected
+    """
+    with pytest.raises(expected):
+        tvmaze.parsers.parse_time(test_input)
 
 
 PARSE_TIMESTAMP_PARAMS = {
