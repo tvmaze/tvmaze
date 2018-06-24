@@ -78,3 +78,15 @@ def parse_timestamp(
     :return: An aware datetime.datetime object in UTC
     """
     return datetime.datetime.fromtimestamp(val, tz=datetime.timezone.utc)
+
+
+def parse_timezone(
+        val: str,
+) -> datetime.tzinfo:
+    """
+    Parse timezone from TVMaze API.
+
+    :param val: A timezone string
+    :return: A timezone
+    """
+    return pendulum.timezone(val)
