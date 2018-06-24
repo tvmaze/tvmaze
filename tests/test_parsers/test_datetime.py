@@ -39,6 +39,30 @@ def test_parse_date(
     assert tvmaze.parsers.parse_date(test_input) == expected
 
 
+PARSE_DURATION_PARAMS = {
+    'Hour': (60, datetime.timedelta(minutes=60)),
+    'Half Hour': (30, datetime.timedelta(minutes=30)),
+}
+
+
+@pytest.mark.parametrize(
+    'test_input,expected',
+    PARSE_DURATION_PARAMS.values(),
+    ids=list(PARSE_DURATION_PARAMS.keys()),
+)
+def test_parse_duration(
+        test_input: int,
+        expected: datetime.timedelta,
+):
+    """
+    Test parsing durations from TVMaze API.
+
+    :param test_input: A duration in minutes
+    :param expected: The expected datetime.timedelta object
+    """
+    assert tvmaze.parsers.parse_duration(test_input) == expected
+
+
 PARSE_TIME_PARAMS = {
     'Midnight': (
         '0:00', datetime.time(hour=0, minute=0),
