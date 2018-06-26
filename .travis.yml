@@ -4,10 +4,11 @@ env:
   global:
     - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
     - SEGFAULT_SIGNALS=all
-  matrix:
-    - TOXENV=quality
 matrix:
   include:
+    - python: '3.6'
+      env:
+        - TOXENV=quality
     - python: '3.6'
       env:
         - TOXENV=py36,covered,coveralls
