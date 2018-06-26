@@ -8,7 +8,7 @@ import setuptools
 
 PROJECT_ROOT = pathlib.Path(__file__).parent
 PROJECT_NAME = 'tvmaze'
-PROJECT_VERSION = '0.0.0'
+PROJECT_VERSION = '0.1.0'
 PROJECT_URL = 'https://github.com/tvmaze/tvmaze'
 PROJECT_LICENSE = 'MIT License'
 PROJECT_DESCRIPTION = 'A Python library for accessing the TVMaze API.'
