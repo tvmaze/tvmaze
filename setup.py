@@ -56,6 +56,7 @@ setuptools.setup(
     keywords=PROJECT_KEYWORDS,
     install_requires=[
         'pendulum',
+        'pycountry',
     ],
     tests_require=[
         'pytest',
