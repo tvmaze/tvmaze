@@ -4,6 +4,7 @@ import datetime
 import typing
 
 import pendulum
+import pycountry
 
 
 def parse_date(
@@ -90,3 +91,15 @@ def parse_timezone(
     :return: A timezone
     """
     return pendulum.timezone(val)
+
+
+def parse_country(
+        val: str,
+) -> pycountry.ExistingCountries:
+    """
+    Parse country from TVMaze API.
+
+    :param val: A country name string
+    :return: A pycountry Country
+    """
+    return pycountry.countries.lookup(val)

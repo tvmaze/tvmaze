@@ -80,7 +80,7 @@ Develop
 .. |commits-last| image:: https://img.shields.io/github/last-commit/google/skia.svg
     :alt: GitHub last commit
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/tvmaze/tvmaze/v0.1.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/tvmaze/tvmaze/v0.2.0.svg
     :alt: Commits since latest release
     :target: https://github.com/tvmaze/tvmaze/compare/develop...master
 

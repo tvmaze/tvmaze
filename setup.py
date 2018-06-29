@@ -6,9 +6,11 @@ import pathlib
 
 import setuptools
 
+PROJECT_AUTHOR = 'Labrys of Knossos'
+PROJECT_AUTHOR_EMAIL = 'labrys.git@gmail.com'
 PROJECT_ROOT = pathlib.Path(__file__).parent
 PROJECT_NAME = 'tvmaze'
-PROJECT_VERSION = '0.1.0'
+PROJECT_VERSION = '0.2.0'
 PROJECT_URL = 'https://github.com/tvmaze/tvmaze'
 PROJECT_LICENSE = 'MIT License'
 PROJECT_DESCRIPTION = 'A Python library for accessing the TVMaze API.'
@@ -36,6 +38,8 @@ PROJECT_KEYWORDS = [
 
 setuptools.setup(
     name=PROJECT_NAME,
+    author=PROJECT_AUTHOR,
+    author_email=PROJECT_AUTHOR_EMAIL,
     version=PROJECT_VERSION,
     license=PROJECT_LICENSE,
     description=PROJECT_DESCRIPTION,
@@ -56,6 +60,7 @@ setuptools.setup(
     keywords=PROJECT_KEYWORDS,
     install_requires=[
         'pendulum',
+        'pycountry',
     ],
     tests_require=[
         'pytest',
