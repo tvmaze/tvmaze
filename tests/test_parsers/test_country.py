@@ -161,7 +161,7 @@ PARSE_COUNTRY_PARAMS = {
     PARSE_COUNTRY_PARAMS.values(),
     ids=list(PARSE_COUNTRY_PARAMS.keys()),
 )
-def test_parse_date(
+def test_parse_country(
         test_input: str,
         expected: str,
 ):
