@@ -10,9 +10,13 @@ matrix:
       env:
         - TOXENV=quality
     - python: '3.6'
+      dist: trusty
+      sudo: false
       env:
         - TOXENV=py36,covered,coveralls
-    - python: '3.7-dev'
+    - python: '3.7'
+      dist: xenial
+      sudo: true
       env:
         - TOXENV=py37,covered,coveralls
 before_install:
