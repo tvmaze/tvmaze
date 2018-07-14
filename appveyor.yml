@@ -4,17 +4,6 @@ cache:
   - '%LOCALAPPDATA%\pip\Cache'
 environment:
   matrix:
-# PYTHON 3.6
-    - TOXENV: 'py36,covered,coveralls'
-      TOXPYTHON: C:\Python36\python.exe
-      PYTHON_HOME: C:\Python36
-      PYTHON_VERSION: '3.6'
-      PYTHON_ARCH: '32'
-    - TOXENV: 'py36,covered,coveralls'
-      TOXPYTHON: C:\Python36-x64\python.exe
-      PYTHON_HOME: C:\Python36-x64
-      PYTHON_VERSION: '3.6'
-      PYTHON_ARCH: '64'
 # PYTHON 3.7
     - TOXENV: 'py37,covered,coveralls'
       TOXPYTHON: C:\Python37\python.exe
@@ -25,6 +14,17 @@ environment:
       TOXPYTHON: C:\Python37-x64\python.exe
       PYTHON_HOME: C:\Python37-x64
       PYTHON_VERSION: '3.7'
+      PYTHON_ARCH: '64'
+# PYTHON 3.6
+    - TOXENV: 'py36,covered,coveralls'
+      TOXPYTHON: C:\Python36\python.exe
+      PYTHON_HOME: C:\Python36
+      PYTHON_VERSION: '3.6'
+      PYTHON_ARCH: '32'
+    - TOXENV: 'py36,covered,coveralls'
+      TOXPYTHON: C:\Python36-x64\python.exe
+      PYTHON_HOME: C:\Python36-x64
+      PYTHON_VERSION: '3.6'
       PYTHON_ARCH: '64'
 init:
   - ps: echo $env:TOXENV
